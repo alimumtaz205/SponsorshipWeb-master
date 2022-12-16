@@ -1,0 +1,332 @@
+<div class="con" id="inner">
+    <div class="row">
+        <div class="col-9">
+        <h2 id="header-text">{{ "landing-page.sponsors-list" | translate }}</h2>
+    </div>
+    <div class="col-3">
+        <button id="btn-add" class="btn btn-xs btn-primary"  data-bs-toggle="modal" data-bs-target="#addSponsorModal" (click)="addOrphan()">  
+          <span style="margin: 8px;"><i class=" fa fa-plus"></i></span>{{ 'common.btn-add' | translate }}</button>
+    </div>
+
+    </div> 
+
+    <div class="table-responsive m-3">
+        <table id="orphans">
+          <thead>
+            <th>S.No</th>
+            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.familyname' | translate }}</th>
+            <th style="min-width: 114px;">{{'modal-form.MotherFirstName' | translate }}</th>
+            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.address' | translate }}</th>
+            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.profession' | translate }}</th>
+            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.SpDeathDate'  | translate}}</th>
+            <th style="width: 380px;">{{'landing-page.sponsor-table.headings.action'  | translate}}</th>
+            
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let user of userList | filter: filterTerm; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{user.familyName}}</td>
+              <td>{{user.motherName}}</td>
+              <td>{{user.address}}</td>
+              <td>{{user.profession}}</td>
+              <td>{{user.spouseDeathDate | date }}</td>
+              <td>
+                 <span>
+                  <button class="btn btn-primary btn-xs" routerLink="/profile">
+                    <span style="margin: 5px;"><i class="fa fa-bars"></i></span>{{ 'modal-form.Details' | translate }}
+                </button>
+                <button class="btn btn-warning btn-xs"  width="20px" height="20px" (click)="openUpdateOrphanMoal(user)" data-bs-toggle="modal" data-bs-target="#addSponsorModal" src="assets/edit-icon.png">
+                    <span style="margin: 5px;"><i class=" fa fa-list"></i></span>{{ 'common.btn-edit' | translate }}
+                </button>
+                <button class="btn btn-danger btn-xs" data-bs-toggle="modal" data-bs-target="#deleteOrphanModal" src="assets/delete-icon.webp">
+                    <span style="margin: 5px;"><i class="fa fa-trash"></i></span>{{ 'common.btn-del' | translate }}
+                </button>
+              </span> 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="justify-center" style="float: right;">               
+          <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+        </div>
+      </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addSponsorModal" data-bs-backdrop="static"  tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addUserModalLabel" *ngIf="!isUpdateOrphan">{{ 'modal-form.add-new-sponsor' | translate }}</h5>
+            <h5 class="modal-title" id="addUserModalLabel" *ngIf="isUpdateOrphan">{{ 'modal-form.UpdateOrphan' | translate }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeUpdateOrphanMoal()"></button>
+         
+            </div>      
+        <div class="modal-body">
+          <h5>{{ 'modal-form.fillallfields' | translate }}</h5>
+          <form class="form" [formGroup]="sponsorForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.UploadMotherImage' | translate }}</label>
+                  <input class="form-control" type="file" (change)="onSelectImage($event)"> <br>
+                  <div class="attachments" *ngIf="motherImage">
+                    <strong>:{{ 'modal-form.SelectedImage' | translate }}</strong>
+                        <div class="cross text-danger fw-bold" (click)="removeAttachment()">
+                          X
+                        </div>
+                        <img class="m-2" src="{{motherImage.fileBytes}}" width="70px" height="70px">
+                  </div>
+                </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.SelectAttachmentDocs'| translate }} </label>
+                  <input class="form-control" type="file" (change)="onSelectFile($event)">
+                  <div class="attachments" *ngIf="attachments.length">
+                    <strong>:{{ 'modal-form.SelectedFiles' | translate }}</strong>
+                    <ul>
+                      <li *ngFor="let attachment of attachments">
+                        <div class="cross text-danger fw-bold" (click)="removeAttachment()">
+                          X
+                        </div>
+                        <img class="m-2" src="{{attachment.fileBytes}}" width="70px" height="70px">
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.FamilyName' | translate }}</label>
+                  <input type="text" class="form-control" 
+                  formControlName="familyName">
+                  
+                 <span style="color: red;" *ngIf="familyName && familyName.invalid && familyName.touched">
+                  {{ 'modal-form.Pleaseentervalidfamilyname' | translate }}</span>
+                </div>
+
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.MotherFirstName' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="motherFirstName">
+                  <span style="color: red;" *ngIf="motherFirstName && motherFirstName.invalid && motherFirstName.touched">
+                    {{ 'modal-form.PleaseEnterValidMotherName' | translate }}</span>
+                </div>
+              </div>
+            
+              <div class="row">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.MotherlastName' | translate }}</label>
+                  <input type="text" class="form-control" 
+                  formControlName="motherName">
+                  <span style="color: red;" *ngIf="motherName && motherName.invalid && motherName.touched">
+                    {{ 'modal-form.PleaseentervalidMotherLastName' | translate }}</span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidMotherLastName' | translate }}</div> -->
+                </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.MaternalHealthStatus' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="maternalHealthStatus">
+                  <span style="color: red;" *ngIf="maternalHealthStatus && maternalHealthStatus.invalid && maternalHealthStatus.touched">
+                    {{ 'modal-form.PleaseentervalidMaternalHealthStatus' | translate }}
+                  </span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidMaternalHealthStatus' | translate }}</div> -->
+                </div>
+              </div>
+          
+              
+              <div class="row">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.PersonalIDCard' | translate }} </label>
+                  <input type="text" class="form-control" 
+                  formControlName="personalId">
+                  <span style="color: red;" *ngIf="personalId && personalId.invalid && personalId.touched">
+                    {{ 'modal-form.PleaseentervalidPersonalIDCard' | translate }}
+                  </span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidPersonalIDCard' | translate }}</div> -->
+                </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.Phone' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="numberOfOrphans">
+                  <span style="color: red;" *ngIf="numberOfOrphans && numberOfOrphans.invalid && numberOfOrphans.touched">
+                    {{ 'modal-form.PleaseentervalidTelephoneNumber' | translate }}
+                  </span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidTelephoneNumber' | translate }}</div> -->
+                </div>
+              </div>
+             
+              <div class="row mt-3">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.SpDeathDate' | translate }}</label>
+                  <input type="datetime-local" class="form-control"
+                  formControlName="spouseDeathDate">
+                  <span style="color: red;" *ngIf="spouseDeathDate && spouseDeathDate.invalid && spouseDeathDate.touched">
+                    {{ 'modal-form.PleaseEnterSpDeathDate' | translate }}
+                  </span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseEnterSpDeathDate' | translate }}</div> -->
+                </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.Address' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="address">
+                  <span style="color: red;" *ngIf="address && address.invalid && address.touched">
+                    {{ 'modal-form.PleaseEnterAddress' | translate }}
+                  </span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseEnterAddress' | translate }}</div> -->
+                </div>
+              </div>
+            <!-- <div class="form-group">
+                <button type="submit" class="btn btn-success">Register</button>
+            </div> -->
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeUpdateOrphanMoal()">{{ 'modal-form.Close' | translate }}</button>
+          <button [disabled]="sponsorForm.invalid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmitOrphanForm()">{{ 'modal-form.SaveDetails' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Orphan Modal -->
+<div class="modal fade" id="deleteOrphanModal" data-bs-backdrop="static"  tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteUserModalLabel">
+          <span style="margin: 8px;"><i class="fa fa-trash"></i></span>{{ 'modal-form.deleteOrphan' | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="align-items: center;">
+        {{ 'modal-form.AreYouSureYouWanttoDelete' | translate }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'modal-form.Close' | translate }}</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delOrphan()">{{ 'modal-form.Delete' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div class="container emp-profile">
+    
+    <div class="main shadow border rounded p-5">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    {{sponsorDetails.firstName}}
+                                </h5>
+                                <h6>
+                                    {{sponsorDetails.contributedAmount}}
+                                </h6>
+                                <p class="proile-rating">Email : <span>{{sponsorDetails.email}}</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="attachments-tab" data-bs-toggle="tab" href="#attachments" role="tab" aria-controls="attachments" aria-selected="false">Sponsored</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    
+                    <button routerLink="/admin-page" class="btn btn-primary float-right">Go Back</button>
+                     <input (click)="toggleEdit()" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
+                <!-- </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>ADDRESS</p>
+                        <a href="">{{sponsorDetails.address}}</a><br/>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Personal Id Card</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{sponsorDetails.personalIdCard}}</p> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-md-6">                                            
+                                            <p>{{sponsorDetails.firstName +' '+ sponsorDetails.lastName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name Of Family Assisted</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{sponsorDetails.nameOfFamilyAssisted}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{sponsorDetails.telephoneNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Nr Of Family Helped</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{sponsorDetails.NrOfFamilyHelped}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Contributed Amount</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{sponsorDetails.contributedAmount}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Help Type</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{sponsorDetails.helpType }}</p>
+                                        </div>
+                                    </div>
+                        </div>
+
+                        
+                        <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab">
+                            <h5> <a href="">Family No One</a> </h5>
+                            <h5> <a href="">Family No two</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>  
+
+    </div>         
+</div> -->

@@ -1,0 +1,35 @@
+#nav, #logo
+{
+    transition: .7s;
+}
+
+
+.back {
+  background: #3C8DBC !important;
+
+}
+.right {
+  justify-content: right;
+}
+
+li{
+  display: inline-block;
+  list-style-type: none;
+
+}
+
+.nav-item{
+  background-color: #0a618a;
+  border-radius: 3px;
+  margin:5px;
+}
+
+.nav-item:hover{
+  background-color: #48a3ce;
+  border-radius: 3px;
+  margin:5px;
+}
+
+.navbar{
+  background-color: #85d0f3;
+}
