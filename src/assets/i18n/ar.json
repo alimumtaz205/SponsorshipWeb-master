@@ -64,6 +64,15 @@
         "PleaseentervalidTelephoneNumber":"الرجاء إدخال رقم الهاتف",
         "Pleasefillallthefields":"الرجاء ملء جميع الحقول",
   
+        "PleaseEnterValidFirstName":"الرجاء إدخال اسم أول صالح",
+        "PleaseEnterValidLastName":"الرجاء إدخال اسم عائلة صالح",
+        "PleaseEnterValidEmail":"يرجى إدخال البريد الإلكتروني الصحيح",
+        "PleaseEnterFamilyAssisted":"الرجاء إدخال الأسرة بمساعدة",
+        "PleaseEnterFamilyHelped":"الرجاء إدخال الأسرة ساعدت",
+        "PleaseenterHelpedType":"الرجاء إدخال نوع المساعدة",
+        "PleaseenterContributionAmount":"الرجاء إدخال مبلغ المساهمة",
+        "PleaseenterPaid":"الرجاء إدخال الحالة المدفوعة",
+
         "AddOrphan":"إضافة اليتيم",
         "deleteOrphan":"حذف اليتيم",
         "DeleteSponsor":"حذف الكفيل",

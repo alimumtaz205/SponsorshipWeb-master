@@ -63,6 +63,16 @@
       "PleaseentervalidTelephoneNumber":"Bitte geben Sie eine gültige Telefonnummer ein",
       "Pleasefillallthefields":"Bitte fülle alle Felder aus",
 
+
+      "PleaseEnterValidFirstName":"Bitte tragen Sie einen gültigen Vornamen ein",
+      "PleaseEnterValidLastName":"Bitte geben Sie einen gültigen Nachnamen ein",
+      "PleaseEnterValidEmail":"Bitte geben Sie eine gültige Email-Adresse ein",
+      "PleaseEnterFamilyAssisted":"Bitte geben Sie familienunterstützt ein",
+      "PleaseEnterFamilyHelped":"Bitte geben Sie Familie geholfen ein",
+      "PleaseenterHelpedType":"Bitte Hilfetyp eingeben",
+      "PleaseenterContributionAmount":"Bitte Beitragshöhe eingeben",
+      "PleaseenterPaid":"Bitte geben Sie den bezahlten Status ein",
+
       "AddOrphan":"Waisenkind hinzufügen",
       "deleteOrphan":"Waisenkind Löschen",
       "DeleteSponsor":"Sponsor löschen",

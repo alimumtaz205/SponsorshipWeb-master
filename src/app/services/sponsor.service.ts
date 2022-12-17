@@ -11,4 +11,8 @@ export class SponsorService {
   addSponsor(data:any){
     return this.http.post('https://api.sponsorship.com/api/sponsor', data)
   }
+
+  getSponsorData(){
+    return this.http.get("assets/SponsorsList.json")
+  }
 }

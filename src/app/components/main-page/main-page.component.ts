@@ -24,7 +24,9 @@ export class MainPageComponent implements OnInit {
     motherName: new FormControl('', Validators.required),
     maternalHealthStatus: new FormControl('', Validators.required),
     personalId: new FormControl('', Validators.required),
+    telephoneNumber: new FormControl('', Validators.required),
     numberOfOrphans: new FormControl('', Validators.required),
+    profession: new FormControl('', Validators.required),
     spouseDeathDate: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required)
   })
@@ -65,7 +67,9 @@ export class MainPageComponent implements OnInit {
   get motherName() { return this.orphanForm.get('motherName'); }
   get maternalHealthStatus() { return this.orphanForm.get('maternalHealthStatus'); }
   get personalId() { return this.orphanForm.get('personalId'); }
+  get telephoneNumber() { return this.orphanForm.get('telephoneNumber'); }
   get numberOfOrphans() { return this.orphanForm.get('numberOfOrphans'); }
+  get profession() { return this.orphanForm.get('numberOfOrphans'); }
   get spouseDeathDate() { return this.orphanForm.get('spouseDeathDate'); }
   get address() { return this.orphanForm.get('address'); }
 
@@ -105,7 +109,9 @@ export class MainPageComponent implements OnInit {
       motherName: new FormControl('', Validators.required),
       maternalHealthStatus: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
+      telephoneNumber: new FormControl('', Validators.required),
       numberOfOrphans: new FormControl('', Validators.required),
+      profession: new FormControl('', Validators.required),
       spouseDeathDate: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required)
     })

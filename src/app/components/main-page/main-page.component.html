@@ -4,7 +4,7 @@
         <h2 id="header-text">{{ "landing-page.orphans-list" | translate }}</h2>
     </div>
     <div class="col-3">
-        <button id="btn-add" class="btn btn-xs btn-primary"  data-bs-toggle="modal" data-bs-target="#addSponsorModal" (click)="addOrphan()">  
+        <button id="btn-add" class="btn btn-xs btn-primary"  data-bs-toggle="modal" data-bs-target="#addOrphanModal" (click)="addOrphan()">  
           <span style="margin: 8px;"><i class=" fa fa-plus"></i></span>{{ 'common.btn-add' | translate }}</button>
     </div>
 
@@ -37,7 +37,7 @@
                   <button class="btn btn-primary btn-xs" routerLink="/profile">
                     <span style="margin: 5px;"><i class="fa fa-bars"></i></span>{{ 'modal-form.Details' | translate }}
                 </button>
-                <button class="btn btn-warning btn-xs"  width="20px" height="20px" (click)="openUpdateOrphanMoal(user)" data-bs-toggle="modal" data-bs-target="#addSponsorModal" src="assets/edit-icon.png">
+                <button class="btn btn-warning btn-xs"  width="20px" height="20px" (click)="openUpdateOrphanMoal(user)" data-bs-toggle="modal" data-bs-target="#addOrphanModal" src="assets/edit-icon.png">
                     <span style="margin: 5px;"><i class=" fa fa-list"></i></span>{{ 'common.btn-edit' | translate }}
                 </button>
                 <button class="btn btn-danger btn-xs" data-bs-toggle="modal" data-bs-target="#deleteOrphanModal" src="assets/delete-icon.webp">
@@ -55,7 +55,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="addSponsorModal" data-bs-backdrop="static"  tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="addOrphanModal" data-bs-backdrop="static"  tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -149,14 +149,34 @@
                 <div class="col-md-5 offset-md-1">
                   <label>{{ 'modal-form.Phone' | translate }}</label>
                   <input type="text" class="form-control"
-                  formControlName="numberOfOrphans">
-                  <span style="color: red;" *ngIf="numberOfOrphans && numberOfOrphans.invalid && numberOfOrphans.touched">
+                  formControlName="telephoneNumber">
+                  <span style="color: red;" *ngIf="telephoneNumber && telephoneNumber.invalid && telephoneNumber.touched">
                     {{ 'modal-form.PleaseentervalidTelephoneNumber' | translate }}
                   </span>
                   <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidTelephoneNumber' | translate }}</div> -->
                 </div>
               </div>
              
+              <div class="row">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.profession' | translate }} </label>
+                  <input type="text" class="form-control" 
+                  formControlName="profession">
+                  <span style="color: red;" *ngIf="profession && profession.invalid && profession.touched">
+                    {{ 'modal-form.PleaseEnterValidProfession' | translate }}
+                  </span>
+                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidPersonalIDCard' | translate }}</div> -->
+                </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.NumberOfOrphans' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="numberOfOrphans">
+                  <span style="color: red;" *ngIf="numberOfOrphans && numberOfOrphans.invalid && numberOfOrphans.touched">
+                    {{ 'modal-form.PleaseEnterNumberOfOrphans' | translate }}
+                  </span>
+               </div>
+              </div>
+
               <div class="row mt-3">
                 <div class="col-md-5">
                   <label>{{ 'modal-form.SpDeathDate' | translate }}</label>

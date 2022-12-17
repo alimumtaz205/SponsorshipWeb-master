@@ -14,12 +14,12 @@
         <table id="orphans">
           <thead>
             <th>S.No</th>
-            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.familyname' | translate }}</th>
-            <th style="min-width: 114px;">{{'modal-form.MotherFirstName' | translate }}</th>
-            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.address' | translate }}</th>
-            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.profession' | translate }}</th>
-            <th style="min-width: 114px;">{{'landing-page.sponsor-table.headings.SpDeathDate'  | translate}}</th>
-            <th style="width: 380px;">{{'landing-page.sponsor-table.headings.action'  | translate}}</th>
+            <th style="min-width: 114px;">{{'modal-form.Spfullname' | translate }}</th>
+            <th style="min-width: 114px;">{{'modal-form.PersonalIDCard' | translate }}</th>
+            <th style="min-width: 114px;">{{'modal-form.Address' | translate }}</th>
+            <th style="min-width: 114px;">{{'modal-form.Phone' | translate }}</th>
+            <th style="min-width: 114px;">{{'modal-form.Mail'  | translate}}</th>
+            <th style="width: 420px;">{{'landing-page.sponsor-table.headings.action'  | translate}}</th>
             
           </thead>
 
@@ -27,11 +27,11 @@
 
             <tr *ngFor="let user of userList | filter: filterTerm; let i = index">
               <td>{{i+1}}</td>
-              <td>{{user.familyName}}</td>
-              <td>{{user.motherName}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.personalIdCard}}</td>
               <td>{{user.address}}</td>
-              <td>{{user.profession}}</td>
-              <td>{{user.spouseDeathDate | date }}</td>
+              <td>{{user.telephoneNumber}}</td>
+              <td>{{user.email}}</td>
               <td>
                  <span>
                   <button class="btn btn-primary btn-xs" routerLink="/profile">
@@ -59,77 +59,50 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="addUserModalLabel" *ngIf="!isUpdateOrphan">{{ 'modal-form.add-new-sponsor' | translate }}</h5>
-            <h5 class="modal-title" id="addUserModalLabel" *ngIf="isUpdateOrphan">{{ 'modal-form.UpdateOrphan' | translate }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeUpdateOrphanMoal()"></button>
+            <h5 class="modal-title" id="addUserModalLabel" *ngIf="!isUpdateOrphan">{{ 'modal-form.AddNewSponsor' | translate }}</h5>
+            <h5 class="modal-title" id="addUserModalLabel" *ngIf="isUpdateOrphan">{{ 'modal-form.UpdateSponsor' | translate }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeUpdateSponsorModal()"></button>
          
             </div>      
         <div class="modal-body">
-          <h5>{{ 'modal-form.fillallfields' | translate }}</h5>
-          <form class="form" [formGroup]="sponsorForm" (ngSubmit)="onSubmit()">
-            <div class="row">
-                <div class="col-md-5">
-                  <label>{{ 'modal-form.UploadMotherImage' | translate }}</label>
-                  <input class="form-control" type="file" (change)="onSelectImage($event)"> <br>
-                  <div class="attachments" *ngIf="motherImage">
-                    <strong>:{{ 'modal-form.SelectedImage' | translate }}</strong>
-                        <div class="cross text-danger fw-bold" (click)="removeAttachment()">
-                          X
-                        </div>
-                        <img class="m-2" src="{{motherImage.fileBytes}}" width="70px" height="70px">
-                  </div>
-                </div>
-                <div class="col-md-5 offset-md-1">
-                  <label>{{ 'modal-form.SelectAttachmentDocs'| translate }} </label>
-                  <input class="form-control" type="file" (change)="onSelectFile($event)">
-                  <div class="attachments" *ngIf="attachments.length">
-                    <strong>:{{ 'modal-form.SelectedFiles' | translate }}</strong>
-                    <ul>
-                      <li *ngFor="let attachment of attachments">
-                        <div class="cross text-danger fw-bold" (click)="removeAttachment()">
-                          X
-                        </div>
-                        <img class="m-2" src="{{attachment.fileBytes}}" width="70px" height="70px">
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+          <h5>{{ 'modal-form.Pleasefillallthefields' | translate }}</h5>
 
+          <form class="form" [formGroup]="sponsorForm" (ngSubmit)="onSubmit()">
+            
               <div class="row">
                 <div class="col-md-5">
-                  <label>{{ 'modal-form.FamilyName' | translate }}</label>
+                  <label>{{ 'modal-form.SpFirstName' | translate }}</label>
                   <input type="text" class="form-control" 
-                  formControlName="familyName">
+                  formControlName="firstName">
                   
-                 <span style="color: red;" *ngIf="familyName && familyName.invalid && familyName.touched">
-                  {{ 'modal-form.Pleaseentervalidfamilyname' | translate }}</span>
+                 <span style="color: red;" *ngIf="firstName && firstName.invalid && firstName.touched">
+                  {{ 'modal-form.PleaseEnterValidFirstName' | translate }}</span>
                 </div>
 
                 <div class="col-md-5 offset-md-1">
-                  <label>{{ 'modal-form.MotherFirstName' | translate }}</label>
+                  <label>{{ 'modal-form.SpLastName' | translate }}</label>
                   <input type="text" class="form-control"
-                  formControlName="motherFirstName">
-                  <span style="color: red;" *ngIf="motherFirstName && motherFirstName.invalid && motherFirstName.touched">
-                    {{ 'modal-form.PleaseEnterValidMotherName' | translate }}</span>
+                  formControlName="lastName">
+                  <span style="color: red;" *ngIf="lastName && lastName.invalid && lastName.touched">
+                    {{ 'modal-form.PleaseEnterValidLastName' | translate }}</span>
                 </div>
               </div>
             
               <div class="row">
                 <div class="col-md-5">
-                  <label>{{ 'modal-form.MotherlastName' | translate }}</label>
+                  <label>{{ 'modal-form.Address' | translate }}</label>
                   <input type="text" class="form-control" 
-                  formControlName="motherName">
-                  <span style="color: red;" *ngIf="motherName && motherName.invalid && motherName.touched">
-                    {{ 'modal-form.PleaseentervalidMotherLastName' | translate }}</span>
+                  formControlName="address">
+                  <span style="color: red;" *ngIf="address && address.invalid && address.touched">
+                    {{ 'modal-form.PleaseEnterAddress' | translate }}</span>
                   <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidMotherLastName' | translate }}</div> -->
                 </div>
                 <div class="col-md-5 offset-md-1">
-                  <label>{{ 'modal-form.MaternalHealthStatus' | translate }}</label>
+                  <label>{{ 'modal-form.PersonalIDCard' | translate }}</label>
                   <input type="text" class="form-control"
-                  formControlName="maternalHealthStatus">
-                  <span style="color: red;" *ngIf="maternalHealthStatus && maternalHealthStatus.invalid && maternalHealthStatus.touched">
-                    {{ 'modal-form.PleaseentervalidMaternalHealthStatus' | translate }}
+                  formControlName="personalIdCard">
+                  <span style="color: red;" *ngIf="personalIdCard && personalIdCard.invalid && personalIdCard.touched">
+                    {{ 'modal-form.PleaseentervalidPersonalIDCard' | translate }}
                   </span>
                   <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidMaternalHealthStatus' | translate }}</div> -->
                 </div>
@@ -138,44 +111,72 @@
               
               <div class="row">
                 <div class="col-md-5">
-                  <label>{{ 'modal-form.PersonalIDCard' | translate }} </label>
-                  <input type="text" class="form-control" 
-                  formControlName="personalId">
-                  <span style="color: red;" *ngIf="personalId && personalId.invalid && personalId.touched">
-                    {{ 'modal-form.PleaseentervalidPersonalIDCard' | translate }}
-                  </span>
-                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidPersonalIDCard' | translate }}</div> -->
-                </div>
-                <div class="col-md-5 offset-md-1">
                   <label>{{ 'modal-form.Phone' | translate }}</label>
                   <input type="text" class="form-control"
-                  formControlName="numberOfOrphans">
-                  <span style="color: red;" *ngIf="numberOfOrphans && numberOfOrphans.invalid && numberOfOrphans.touched">
+                  formControlName="telephoneNumber">
+                  <span style="color: red;" *ngIf="telephoneNumber && telephoneNumber.invalid && telephoneNumber.touched">
                     {{ 'modal-form.PleaseentervalidTelephoneNumber' | translate }}
+                  </span> </div> 
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.Mail' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="email">
+                  <span style="color: red;" *ngIf="email && email.invalid && email.touched">
+                    {{ 'modal-form.PleaseEnterValidEmail' | translate }}
                   </span>
-                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidTelephoneNumber' | translate }}</div> -->
                 </div>
               </div>
              
               <div class="row mt-3">
                 <div class="col-md-5">
-                  <label>{{ 'modal-form.SpDeathDate' | translate }}</label>
-                  <input type="datetime-local" class="form-control"
-                  formControlName="spouseDeathDate">
-                  <span style="color: red;" *ngIf="spouseDeathDate && spouseDeathDate.invalid && spouseDeathDate.touched">
-                    {{ 'modal-form.PleaseEnterSpDeathDate' | translate }}
-                  </span>
-                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseEnterSpDeathDate' | translate }}</div> -->
-                </div>
-                <div class="col-md-5 offset-md-1">
-                  <label>{{ 'modal-form.Address' | translate }}</label>
+                  <label>{{ 'modal-form.NameofFamilyAssisted' | translate }}</label>
                   <input type="text" class="form-control"
-                  formControlName="address">
-                  <span style="color: red;" *ngIf="address && address.invalid && address.touched">
-                    {{ 'modal-form.PleaseEnterAddress' | translate }}
+                  formControlName="nameOfFamilyAssisted">
+                  <span style="color: red;" *ngIf="nameOfFamilyAssisted && nameOfFamilyAssisted.invalid && nameOfFamilyAssisted.touched">
+                    {{ 'modal-form.PleaseEnterFamilyAssisted' | translate }}
                   </span>
-                  <!-- <div class="invalid-feedback">{{ 'modal-form.PleaseEnterAddress' | translate }}</div> -->
-                </div>
+                  </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.NrofFamilyHelped' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="nrOfFamilyHelped">
+                  <span style="color: red;" *ngIf="nrOfFamilyHelped && nrOfFamilyHelped.invalid && nrOfFamilyHelped.touched">
+                    {{ 'modal-form.PleaseEnterFamilyHelped' | translate }}
+                  </span>
+                   </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.HelpType' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="helpType">
+                  <span style="color: red;" *ngIf="helpType && helpType.invalid && helpType.touched">
+                    {{ 'modal-form.PleaseenterHelpedType' | translate }}
+                  </span>
+                 </div>
+                <div class="col-md-5 offset-md-1">
+                  <label>{{ 'modal-form.ContributionAmount' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="contributionAmount">
+                  <span style="color: red;" *ngIf="contributionAmount && contributionAmount.invalid && contributionAmount.touched">
+                    {{ 'modal-form.PleaseenterContributionAmount' | translate }}
+                  </span>
+                  </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-5">
+                  <label>{{ 'modal-form.PaidStatus' | translate }}</label>
+                  <input type="text" class="form-control"
+                  formControlName="paid">
+                  <span style="color: red;" *ngIf="paid && paid.invalid && paid.touched">
+                    {{ 'modal-form.PleaseenterPaid' | translate }}
+                  </span>
+                   </div>
+                <div class="col-md-5 offset-md-1">
+                 
+                   </div>
               </div>
             <!-- <div class="form-group">
                 <button type="submit" class="btn btn-success">Register</button>
@@ -183,7 +184,7 @@
         </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeUpdateOrphanMoal()">{{ 'modal-form.Close' | translate }}</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeUpdateSponsorModal()">{{ 'modal-form.Close' | translate }}</button>
           <button [disabled]="sponsorForm.invalid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmitOrphanForm()">{{ 'modal-form.SaveDetails' | translate }}</button>
         </div>
       </div>
