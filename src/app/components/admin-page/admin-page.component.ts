@@ -116,7 +116,7 @@ export class AdminPageComponent implements OnInit {
         earnings: [null, Validators.required],
         godFatherType: [null, Validators.required],
     });
-  
+     debugger;
     this.orphansList.push(orphanDataForm);
   }
 
