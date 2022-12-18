@@ -18,18 +18,3 @@ li{
 
 }
 
-.nav-item{
-  background-color: #0a618a;
-  border-radius: 3px;
-  margin:5px;
-}
-
-.nav-item:hover{
-  background-color: #48a3ce;
-  border-radius: 3px;
-  margin:5px;
-}
-
-.navbar{
-  background-color: #85d0f3;
-}

@@ -202,11 +202,11 @@
     <div class="col-md-5 offset-md-1">
       <label>{{ 'modal-form.MotherFirstName' | translate }}</label>
       <input type="text" class="form-control"
-      formControlName="MotherFirstName"
+      formControlName="motherFirstName"
       [class.is-invalid]="
-        getFormProperty('MotherFirstName')?.invalid &&
-        (getFormProperty('MotherFirstName')?.touched ||
-          getFormProperty('MotherFirstName')?.dirty)
+        getFormProperty('motherFirstName')?.invalid &&
+        (getFormProperty('motherFirstName')?.touched ||
+          getFormProperty('motherFirstName')?.dirty)
       ">
       <div class="invalid-feedback">{{ 'modal-form.PleaseEnterValidMotherFirstName' | translate }}</div>
     </div>
@@ -215,11 +215,11 @@
     <div class="col-md-5">
       <label>{{ 'modal-form.MotherlastName' | translate }}</label>
       <input type="text" class="form-control" 
-      formControlName="MotherlastName"
+      formControlName="motherName"
       [class.is-invalid]="
-        getFormProperty('MotherlastName')?.invalid &&
-        (getFormProperty('MotherlastName')?.touched ||
-          getFormProperty('MotherlastName')?.dirty)
+        getFormProperty('motherName')?.invalid &&
+        (getFormProperty('motherName')?.touched ||
+          getFormProperty('motherName')?.dirty)
       ">
       <div class="invalid-feedback">{{ 'modal-form.PleaseentervalidMotherLastName' | translate }}</div>
     </div>

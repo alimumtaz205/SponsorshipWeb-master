@@ -91,6 +91,7 @@
       "GodFatherType":"Waisenpatenschaft Formel",
 
       "PleaseEnterName":"Bitte geben Sie den Waisennamen ein",
+      "PleaseEnterValidMotherFirstName": "Bitte geben Sie einen gültigen Vornamen der Mutter ein",
       "PleaseentervalidMotherLastName": "Bitte geben Sie einen gültigen Nachnamen der Mutter ein",
       "PleaseentervalidMaternalHealthStatus":"Bitte geben Sie einen gültigen Gesundheitsstatus der Mutter ein",
       "PleaseEnterDateOfOrphanbirthday":"Bitte geben Sie den Geburtstag des Waisenkindes ein",

@@ -12,14 +12,9 @@ import { SponsorService } from '../../services/sponsor.service';
 
 export class AdminPageComponent implements OnInit {
 
-  // constructor(){
-
-  // }
-
-  // ngOnInit(): void { 
-
-  //}
-//}
+  
+  userList:any = [];
+  sponsorList:any = [];
 
   titleParam = {company:'Phrase'}
   dropdown:boolean = false
@@ -29,178 +24,8 @@ export class AdminPageComponent implements OnInit {
   p: number = 1;
 
   users:any=[];
-  userList = [
-    {
-      imageUrl: '',
-      familyName: 'Jumairah Katey',
-      motherName: 'Nasty Wilcon',
-      motherFirstName: 'Ajriza Khanum',
-      maternalHealthStatus: 'Good Health',
-      personalId: 2323232,
-      telephoneNumber: '3020392',
-      profession: 'House Wife',
-      numberOfOrphans: 3,
-      spouseDeathDate: new Date(),
-      address: 'new auston roads street iii',
-      attachements: [
   
-      ],
-      orphansList: [
-        {
-          name: 'Arman Khan',
-          dateOfBirth: new Date(),
-          firstName: 'Arman',
-          healthStatus: 'Normal Healthy',
-          residentialStatus: 'Single',
-          numberOfPeople: 3,
-          socialCare: 'fit',
-          earning: 'Student',
-          academicLevel: '5 Grade',
-          notes: 'this is details about orphan'
-        },
-        {
-          name: 'Sony Tomer',
-          dateOfBirth: new Date(),
-          firstName: 'Sony',
-          healthStatus: 'Normal Healthy',
-          residentialStatus: 'Single',
-          numberOfPeople: 3,
-          socialCare: 'fit',
-          earning: 'Student',
-          academicLevel: '6 Grade',
-          notes: 'this is details about orphan'
-        }
-      ]
-    },
-    {
-      imageUrl: '',
-      familyName: 'Jumairah Katey',
-      motherName: 'Nasty Wilcon',
-      motherFirstName: 'Ajriza Khanum',
-      maternalHealthStatus: 'Good Health',
-      personalId: 2323232,
-      telephoneNumber: '3020392',
-      profession: 'House Wife',
-      numberOfOrphans: 3,
-      spouseDeathDate: new Date(),
-      address: 'new auston roads street iii',
-      attachements: [
   
-      ],
-      orphansList: [
-        {
-          name: 'Arman Khan',
-          dateOfBirth: new Date(),
-          firstName: 'Arman',
-          healthStatus: 'Normal Healthy',
-          residentialStatus: 'Single',
-          numberOfPeople: 3,
-          socialCare: 'fit',
-          earning: 'Student',
-          academicLevel: '5 Grade',
-          notes: 'this is details about orphan'
-        },
-        {
-          name: 'Sony Tomer',
-          dateOfBirth: new Date(),
-          firstName: 'Sony',
-          healthStatus: 'Normal Healthy',
-          residentialStatus: 'Single',
-          numberOfPeople: 3,
-          socialCare: 'fit',
-          earning: 'Student',
-          academicLevel: '6 Grade',
-          notes: 'this is details about orphan'
-        }
-      ]
-    },
-    {
-      imageUrl: '',
-      familyName: 'Jumairah Katey',
-      motherName: 'Nasty Wilcon',
-      motherFirstName: 'Ajriza Khanum',
-      maternalHealthStatus: 'Good Health',
-      personalId: 2323232,
-      telephoneNumber: '3020392',
-      profession: 'House Wife',
-      numberOfOrphans: 3,
-      spouseDeathDate: new Date(),
-      address: 'new auston roads street iii',
-      attachements: [
-  
-      ],
-      orphansList: [
-        {
-          name: 'Arman Khan',
-          dateOfBirth: new Date(),
-          firstName: 'Arman',
-          healthStatus: 'Normal Healthy',
-          residentialStatus: 'Single',
-          numberOfPeople: 3,
-          socialCare: 'fit',
-          earning: 'Student',
-          academicLevel: '5 Grade',
-          notes: 'this is details about orphan'
-        },
-        {
-          name: 'Sony Tomer',
-          dateOfBirth: new Date(),
-          firstName: 'Sony',
-          healthStatus: 'Normal Healthy',
-          residentialStatus: 'Single',
-          numberOfPeople: 3,
-          socialCare: 'fit',
-          earning: 'Student',
-          academicLevel: '6 Grade',
-          notes: 'this is details about orphan'
-        }
-      ]
-    }
-
-  ]
-
-  sponsorList: any = [
-    {
-      firstName: "Al Nora",
-      lastName: 'Mobatach',
-      address: 'JLT DMCC Dubai',
-      personalIdCard: '329023',
-      telephoneNumber: '39239923',
-      email: "aln@gmail.com",
-      nameOfFamilyAssisted: 'Jumairah Katey',
-      NrOfFamilyHelped: 4,
-      helpType: 'Sponsored',
-      contributionAmount: "50K DHM",
-      paid: true
-    },
-    {
-      firstName: "Al Nora",
-      lastName: 'Mobatach',
-      address: 'JLT DMCC Dubai',
-      personalIdCard: '329023',
-      telephoneNumber: '39239923',
-      email: "aln@gmail.com",
-      nameOfFamilyAssisted: 'Jumairah Katey',
-      NrOfFamilyHelped: 4,
-      helpType: 'Sponsored',
-      contributionAmount: "50K DHM",
-      paid: true
-    },
-    {
-      firstName: "Al Nora",
-      lastName: 'Mobatach',
-      address: 'JLT DMCC Dubai',
-      personalIdCard: '329023',
-      telephoneNumber: '39239923',
-      email: "aln@gmail.com",
-      nameOfFamilyAssisted: 'Jumairah Katey',
-      NrOfFamilyHelped: 4,
-      helpType: 'Sponsored',
-      contributedAmount: "50K DHM",
-      paid: true
-    }
-  ]
-
   attachments: any[] = []
 
   orphanForm! : FormGroup;
@@ -222,6 +47,8 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit(): void {
     debugger;
+    this.getOrphans();   
+    this.getSponsors();
     this.httpClient.get("assets/data.json").subscribe(data =>{
       console.log(data);
       this.users = data;
@@ -256,6 +83,22 @@ export class AdminPageComponent implements OnInit {
       helpType: [null,[Validators.required]],
       contributedAmount: [null,[Validators.required]],
       paid: [null,[Validators.required]],
+    })
+  }
+
+  async getOrphans(){
+    await this.orphanService.getOrphanData().subscribe(data =>{
+      console.log(data);  
+      debugger;
+      this.userList = data;
+    })
+  }
+
+  async getSponsors(){
+    await this.sponsorService.getSponsorData().subscribe(data =>{
+      console.log(data);  
+      debugger;
+      this.sponsorList = data;
     })
   }
 

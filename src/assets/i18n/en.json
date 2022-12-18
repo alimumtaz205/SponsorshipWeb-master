@@ -90,6 +90,7 @@
       "GodFatherType":"God Father Type",
 
       "PleaseEnterName":"Please enter the orphan name",
+      "PleaseEnterValidMotherFirstName": "Please enter valid Mother First Name",
       "PleaseentervalidMotherLastName": "Please enter valid Mother Last Name",
       "PleaseentervalidMaternalHealthStatus":"Please enter valid Maternal Health Status",
       "PleaseEnterDateOfOrphanbirthday":"Please enter the orphan's birthday",

@@ -54,6 +54,8 @@
         "Address":"العنوان",
         "MaternalHealthStatus":"حالة الأم الصحية",
   
+        
+        "PleaseEnterValidMotherFirstName": "الرجاء إدخال اسم الأم الأول صالح",
         "PleaseentervalidMotherLastName":"الرجاء إدخال اسم  الأم",
         "PleaseEnterValidProfession":"الرجاء إدخال المهنة",
         "PleaseEnterNumberOfOrphans":"الرجاء إدخال عدد الأيتام",
