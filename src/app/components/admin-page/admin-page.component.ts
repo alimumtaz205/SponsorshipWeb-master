@@ -12,10 +12,6 @@ import { SponsorService } from '../../services/sponsor.service';
 
 export class AdminPageComponent implements OnInit {
 
-  
-  userList:any = [];
-  sponsorList:any = [];
-
   titleParam = {company:'Phrase'}
   dropdown:boolean = false
   
@@ -25,6 +21,8 @@ export class AdminPageComponent implements OnInit {
 
   users:any=[];
   
+  userList:any = [];
+  sponsorList:any = [];
   
   attachments: any[] = []
 
@@ -41,18 +39,14 @@ export class AdminPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private orphanService: OrphanService,
-    private sponsorService: SponsorService,
-    private httpClient: HttpClient) {
+    private sponsorService: SponsorService) {
    }
 
   ngOnInit(): void {
     debugger;
     this.getOrphans();   
     this.getSponsors();
-    this.httpClient.get("assets/data.json").subscribe(data =>{
-      console.log(data);
-      this.users = data;
-    })
+  
     //orphans: Orphan[] = orphansData
 
     this.orphanForm = this.fb.group({
@@ -194,7 +188,7 @@ export class AdminPageComponent implements OnInit {
 
   openUpdateOrphanMoal(orphan:any){
     this.isUpdateOrphan = true
-    this.orphanForm.patchValue({ 
+    this.orphanForm.patchValue({
       ...orphan
     })
   }
@@ -290,6 +284,5 @@ export class AdminPageComponent implements OnInit {
    }
    return extensionName
  }
-
 
 }

@@ -26,7 +26,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let user of userList | filter: filterTerm | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+        <tr *ngFor="let user of userList | filter: filterTerm | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
           <td>{{i+1}}</td>
           <td>{{user.familyName}}</td>
           <td>{{user.motherName}}</td>
@@ -71,7 +71,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let user of sponsorList | filter: filterTermSponsor | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+        <tr *ngFor="let user of sponsorList | filter: filterTermSponsor; let i = index">
           <td>{{i+1}}</td>
           <td>{{user.firstName}}</td>
           <td>{{user.telephoneNumber}}</td>
@@ -308,9 +308,6 @@
     </div>
   </div>
 
-
-
-
   
 <ng-container formArrayName="orphansList">
 <ng-container *ngFor="let orphanDataForm of orphansList.controls; let i = index">
@@ -488,7 +485,7 @@
 <div class="modal-content">
 <div class="modal-header">
 <h5 class="modal-title" id="addUserModalLabel" *ngIf="!isUpdateSponsor">{{ 'add-sponsor-modal.title' | translate }}</h5>
-<h5 class="modal-title" id="addUserModalLabel" *ngIf="isUpdateSponsor">{{ 'modal-form.SaveDetailsSave' | translate }} {{ 'modal-form.UpdateSponsor' | translate }} </h5>
+<h5 class="modal-title" id="addUserModalLabel" *ngIf="isUpdateSponsor">{{ 'modal-form.UpdateSponsor' | translate }} </h5>
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeUpdateSponsorMoal()"></button>
 </div>
 <div class="modal-body">
@@ -621,7 +618,7 @@
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" (click)="closeUpdateSponsorMoal()" data-bs-dismiss="modal">{{ 'modal-form.Close' | translate }}</button>
-<button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmitSponsorForm()">{{ 'modal-form.SaveDetailsSave' | translate }}</button>
+<button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmitSponsorForm()">{{ 'modal-form.SaveDetails' | translate }}</button>
 </div>
 </div>
 </div>

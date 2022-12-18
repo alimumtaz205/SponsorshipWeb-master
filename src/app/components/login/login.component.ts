@@ -12,17 +12,17 @@ export class LoginComponent implements OnInit {
  // @ViewChild('contactForm') loginForm!: NgForm;
   // username: string = ''
   // password: string = ''
-
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  })
+  loginForm! : FormGroup;
 
   constructor(
     public fb: FormBuilder,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    })
   }
 
   get username() 
@@ -48,8 +48,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     // debugger;
-    // var data = this.loginForm.value;
-    // localStorage.setItem('user', data);
     console.log("ifo ", this.username, " ", this.password)
 
     this.router.navigate(['admin-page'])
