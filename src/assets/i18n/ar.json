@@ -75,6 +75,9 @@
         "PleaseenterContributionAmount":"الرجاء إدخال مبلغ المساهمة",
         "PleaseenterPaid":"الرجاء إدخال الحالة المدفوعة",
 
+      "PleaseenterUsername":"الرجاءادخال اسم مستخدم صحيح",
+      "PleaseenterPassword":"من فضلك أدخل رقمك السري",
+
         "AddOrphan":"إضافة اليتيم",
         "deleteOrphan":"حذف اليتيم",
         "DeleteSponsor":"حذف الكفيل",
@@ -104,6 +107,7 @@
         "Pleaseenterearnings":"الرجاء إدخال مؤشر الفقر",
         "Pleaseenteracademiclevel":"الرجاء إدخال المستوى الدراسي لليتيم",
        
+
   
         "SelectAttachmentDocs":"حدد المستندات المرفقة",
         "SelectedFiles":"الملفات المختارة",

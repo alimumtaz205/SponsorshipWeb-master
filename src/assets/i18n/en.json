@@ -71,6 +71,10 @@
       "PleaseenterHelpedType":"Please enter help type",
       "PleaseenterContributionAmount":"Please enter contribution amount",
       "PleaseenterPaid":"Please enter paid status",
+      
+      "PleaseenterUsername":"Please enter a valid username",
+      "PleaseenterPassword":"Please enter your password",
+
 
       "AddOrphan":"Add orphan",
       "deleteOrphan":"Delete Orphan",

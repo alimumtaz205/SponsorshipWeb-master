@@ -21,8 +21,8 @@ export class AppComponent  implements OnInit {
     this.router.events.pipe(
           filter((event:any) => event instanceof NavigationEnd)
         ).subscribe((event: any) => {
-       if(event.url =='/main-page') {
-            this.currenturl = 'main-page'
+       if(event.url =='/admin-page') {
+            this.currenturl = 'admin-page'
             this.notShow = true
           }else {
             this.currenturl = event.url

@@ -73,6 +73,9 @@
       "PleaseenterContributionAmount":"Bitte Beitragshöhe eingeben",
       "PleaseenterPaid":"Bitte geben Sie den bezahlten Status ein",
 
+      "PleaseenterUsername":"Bitte tragen Sie einen gültigen Benutzernamen ein",
+      "PleaseenterPassword":"Bitte geben Sie Ihr Passwort ein",
+
       "AddOrphan":"Waisenkind hinzufügen",
       "deleteOrphan":"Waisenkind Löschen",
       "DeleteSponsor":"Sponsor löschen",
@@ -103,7 +106,6 @@
       "Pleaseenterearnings":"Bitte Armutsindex eingeben",
       "Pleaseenteracademiclevel":"Bitte geben Sie das akademische Niveau ein",
      
-
       "SelectAttachmentDocs":"Anhangdokumente auswählen",
       "SelectedFiles":"Ausgewählte Dateien",
       "AreYouSureYouWanttoDelete":"Möchten Sie wirklich löschen?",

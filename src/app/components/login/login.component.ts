@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     // debugger;
     console.log("ifo ", this.username, " ", this.password)
-
+    //this.notShow=true;
     this.router.navigate(['admin-page'])
   }
 

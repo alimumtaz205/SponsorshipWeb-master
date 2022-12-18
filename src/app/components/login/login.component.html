@@ -20,22 +20,34 @@
 											class="fa fa-twitter"></span></a>
 								</p>
 							</div>
-						</div>
+						</div> 
 						<form class="signin-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 							<div class="form-group mb-3">
 								<label class="label" for="username">{{ 'login-page.user-label' | translate}}</label>
 								<!-- <input [(ngModel)]="username" name="username" type="text" class="form-control" placeholder="" required> -->
-								<input [ngModel]="username" type="username" class="form-control" placeholder="">
+								<input type="text" class="form-control"
+								formControlName="username">
 								<span style="color: red;" *ngIf="username && username.invalid && username.touched">
-									{{ 'modal-form.PleaseEnterValidMotherName' | translate }}</span>
-							</div>
+								  {{ 'modal-form.PleaseenterUsername' | translate }}</span>
+							  </div>
+
+								<!-- <input [ngModel]="username" type="username" class="form-control" placeholder="">
+								<span style="color: red;" *ngIf="username && username.invalid && username.touched">
+									{{ 'modal-form.PleaseEnterValidMotherName' | translate }}</span> -->
+							
 							<div class="form-group mb-3">
 								<label class="label" for="password">{{ 'login-page.password-label' | translate}}</label>
 								<!-- <input [(ngModel)]="password" name="password" type="password" class="form-control" placeholder=""> -->
-								<input name="password" type="password" class="form-control" placeholder="">
+								<input type="text" class="form-control"
+								formControlName="password">
 								<span style="color: red;" *ngIf="password && password.invalid && password.touched">
-									{{ 'modal-form.PleaseEnterValidMotherName' | translate }}</span>
-							</div>
+								  {{ 'modal-form.PleaseenterPassword' | translate }}</span>
+							  </div>
+
+								<!-- <input name="password" type="password" class="form-control" placeholder="">
+								<span style="color: red;" *ngIf="password && password.invalid && password.touched">
+									{{ 'modal-form.PleaseenterPassword' | translate }}</span> -->
+						
 							<div class="form-group">
 								<button type="submit" class="form-control btn btn-primary rounded submit px-3"
 									>{{ 'login-page.SignIn' | translate}}</button>

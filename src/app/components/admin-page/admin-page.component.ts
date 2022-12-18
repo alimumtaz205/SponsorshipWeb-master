@@ -16,6 +16,7 @@ export class AdminPageComponent implements OnInit {
   dropdown:boolean = false
   
   filterTerm!: string;
+  filterTermOrphan!: string;
   filterTermSponsor!: string;
   p: number = 1;
 
@@ -102,11 +103,12 @@ export class AdminPageComponent implements OnInit {
 
   addOrphan() {
     const orphanDataForm = this.fb.group({
-        name: [null, Validators.required],
+       name: [null, Validators.required],
         firsName: [null, Validators.required],
         healthStatus: [null, Validators.required],
         note: [null, Validators.required],
         dateOfBirth: [null, Validators.required],
+        OrphanFirstName: [null, Validators.required],
         academicLevel: [null, Validators.required],
         residentialStatus: [null, Validators.required],
         numberOfPeople: [null, Validators.required],
@@ -132,6 +134,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   getFormArrayProperty(index:any, property:any){
+    debugger;
     return (this.orphanForm.controls['orphansList'] as FormArray).controls[index].get(property)
   }
 

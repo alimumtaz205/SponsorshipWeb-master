@@ -8,11 +8,10 @@
 <div class="row user-list p-5">
 
   <h2 class="text-center m-3">{{ 'landing-page.orphans-list' | translate }}</h2>
-  <button class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#addOrphanModal">+ {{ 'landing-page.add-new-orphan' | translate }}</button>
+  <button class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#addOrphanModal">+ {{ 'landing-page.add-new-orphan' | translate }}</button>
   
   <input style="width: 200px; border: 2px solid black;" type="text" class="form-control m-4" 
-  [placeholder]="'nav-bar.search.placeholder' | translate" [(ngModel)]="filterTerm"
-  />
+  [placeholder]="'nav-bar.search.placeholder' | translate" [(ngModel)]="filterTerm"/>
   <div class="table-responsive m-3">
     <table class="table table-info table-striped table-primary">
       <thead style="color: black;">
@@ -26,7 +25,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let user of userList | filter: filterTerm | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+        <tr *ngFor="let user of userList | filter: filterTermOrphan | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
           <td>{{i+1}}</td>
           <td>{{user.familyName}}</td>
           <td>{{user.motherName}}</td>
@@ -63,7 +62,7 @@
       <thead style="color: black;">
         <th>S.No</th>
         <th style="min-width: 114px;">{{ 'modal-form.Spfullname' | translate }}</th>
-        <th style="min-width: 114px;">{{ 'modal-form.ID' | translate }}</th>
+        <th style="min-width: 114px;">{{ 'modal-form.PersonalIDCard' | translate }}</th>
         <th style="min-width: 125px;">{{ 'modal-form.Address' | translate }}</th>
         <th style="min-width: 125px;">{{ 'modal-form.Phone' | translate }}</th>
         <th style="min-width: 125px;">{{ 'modal-form.Mail' | translate }}</th>
@@ -321,7 +320,7 @@
     <div class="col-md-5">
       <label>{{ 'modal-form.OrphanName' | translate }}</label>
       <input type="text" class="form-control"
-      formControlName="name"
+      formControlName="healthStatus"
       [class.is-invalid]="
       getFormArrayProperty(i,'name')?.invalid &&
         (getFormArrayProperty(i,'name')?.touched ||
