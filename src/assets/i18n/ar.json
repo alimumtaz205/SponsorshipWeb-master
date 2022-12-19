@@ -82,7 +82,7 @@
         "deleteOrphan":"حذف اليتيم",
         "DeleteSponsor":"حذف الكفيل",
         "Orphan":"اليتيم",
-        "Orphans":"أيتام",
+        "Orphans":"أيتام", 
         "OrphanName":"اسم اليتيم",
         "OrphanFirstName":"الاسم العاءلي لليتيم",
         "Orphanbirthday":"تاريخ ميلاد اليتيم",
@@ -123,6 +123,7 @@
         "NrofFamilyHelped":"رقم الاسرة المكلف بها",
         "HelpType":"نوع المساعدة",
         "ContributionAmount":"مبلغ المساهمة",
+        "PaidStatus":"مدفوعة (نعم / لا)",
         "UpdateSponsor":"تحديث  الكفيل",
   
         "Data":"البيانات",

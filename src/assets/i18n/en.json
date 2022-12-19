@@ -122,7 +122,7 @@
       "HelpType":"Help Type",
       "ContributionAmount":"Contribution Amount",
       "PaidStatus":"Paid (Yes/No)",
-      "UpdateSponsor":"Update Sponsor",
+      "UpdateSponsor":"Update Sponsor", 
       "AddNewSponsor":"Add New Sponsor",
 
       "Data":"Data",

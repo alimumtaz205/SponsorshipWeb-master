@@ -120,6 +120,7 @@
       "NrofFamilyHelped":"Nr der geholfenen Familie",
       "HelpType":"Hilfetyp",
       "ContributionAmount":"Beitragshöhe",
+      "PaidStatus":"Bezahlt (Ja/Nein)",
       "UpdateSponsor":"Sponsor aktualisieren",
 
       "Data":"Daten",

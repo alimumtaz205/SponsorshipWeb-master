@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrphanService } from '../../services/orphan.service';
 import { SponsorService } from '../../services/sponsor.service';
 
@@ -15,6 +15,8 @@ export class AdminPageComponent implements OnInit {
   titleParam = {company:'Phrase'}
   dropdown:boolean = false
   
+  
+
   filterTerm!: string;
   filterTermOrphan!: string;
   filterTermSponsor!: string;
@@ -80,6 +82,7 @@ export class AdminPageComponent implements OnInit {
       paid: [null,[Validators.required]],
     })
   }
+
 
   async getOrphans(){
     await this.orphanService.getOrphanData().subscribe(data =>{

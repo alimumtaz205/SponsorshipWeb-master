@@ -25,7 +25,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let user of userList | filter: filterTermOrphan | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+        <tr *ngFor="let user of userList | filter: filterTerm | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
           <td>{{i+1}}</td>
           <td>{{user.familyName}}</td>
           <td>{{user.motherName}}</td>
@@ -320,7 +320,7 @@
     <div class="col-md-5">
       <label>{{ 'modal-form.OrphanName' | translate }}</label>
       <input type="text" class="form-control"
-      formControlName="healthStatus"
+      formControlName="name"
       [class.is-invalid]="
       getFormArrayProperty(i,'name')?.invalid &&
         (getFormArrayProperty(i,'name')?.touched ||
@@ -603,7 +603,7 @@
       ">
     </div>
     <div class="col-md-5">
-      <label>{{ 'modal-form.PaidYes/No'  | translate }}</label>
+      <label>{{ 'modal-form.PaidStatus'  | translate }}</label>
       <input type="text" class="form-control"
       formControlName="paid"
       [class.is-invalid]="
